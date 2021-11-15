@@ -5,3 +5,4 @@ Reference:
 
 Original Source Code
 * https://condor.depaul.edu/mkalin/ipcCode.zip
+* https://github.com/denehs/unix-domain-socket-example
