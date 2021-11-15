@@ -22,6 +22,7 @@ int main() {
   if (cpid < 0) report_and_exit("fork");              /* check for failure */
 
   if (0 == cpid) {    /*** child ***/                 /* child process */
+    sleep(120);                                       /* we can observe /proc/PID/fd there there are inode numbers of the pipes which whill show up in lsof output as well*/
     close(pipeFDs[WriteEnd]);                         /* child reads, doesn't write */
 
     while (read(pipeFDs[ReadEnd], &buf, 1) > 0)       /* read until end of byte stream */
@@ -31,6 +32,7 @@ int main() {
     _exit(0);                                         /* exit and notify parent at once  */
   }
   else {              /*** parent ***/
+    sleep(120);
     close(pipeFDs[ReadEnd]);                          /* parent writes, doesn't read */
 
     write(pipeFDs[WriteEnd], msg, strlen(msg));       /* write the bytes to the pipe */
